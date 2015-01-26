@@ -77,73 +77,73 @@
 		/**
 		 * @return {undefined}
 		 */
-		window.onload = function() {
-			/** @type {NodeList} */
-			var arr = document.getElementsByTagName("textarea");
-			/** @type {number} */
-			var i = arr.length - 1;
-			for (;i >= 0;i--) {
-				handler(arr[i]);
-				/** @type {Element} */
-				var li = document.createElement("button");
-				/** @type {string} */
-				li.className = "execute";
-				/** @type {string} */
-				li.innerHTML = "Execute";
-				arr[i].parentNode.insertBefore(li, arr[i].nextSibling);
-				/** @type {Element} */
-				var elem = document.createElement("button");
-				/** @type {string} */
-				elem.className = "raw";
-				/** @type {string} */
-				elem.innerHTML = "View Initial Document";
-				arr[i].parentNode.insertBefore(elem, arr[i].nextSibling);
-			}
-			/** @type {NodeList} */
-			var codeSegments = document.getElementsByClassName("execute");
-			/** @type {number} */
-			i = 0;
-			for (;i < codeSegments.length;i++) {
-				/**
-				 * @return {undefined}
-				 */
-				codeSegments[i].onclick = function() {
-					childs = this.parentNode.childNodes;
-					/** @type {number} */
-					var i = 0;
-					for (;i < childs.length;i++) {
-						if ("TEXTAREA" == childs[i].tagName) {
-							eval(childs[i].value);
-						}
-					}
-				};
-			}
-			/** @type {NodeList} */
-			var resultItems = document.getElementsByClassName("raw");
-			/** @type {number} */
-			i = 0;
-			for (;i < resultItems.length;i++) {
-				/**
-				 * @return {undefined}
-				 */
-				resultItems[i].onclick = function() {
-					var nodes = this.parentNode.childNodes;
-					/** @type {number} */
-					var i = 0;
-					for (;i < nodes.length;i++) {
-						if ("TEXTAREA" == nodes[i].tagName) {
-							var expectedOutputHref = nodes[i].getAttribute("raw");
-							loadFile(expectedOutputHref, function(deepDataAndEvents, dataAndEvents) {
-								output = (new DocxGen(dataAndEvents)).getZip().generate({
-									type : "blob"
-								});
-								saveAs(output, "raw.docx");
-							});
-						}
-					}
-				};
-			}
-		};
+//		window.onload = function() {
+//			/** @type {NodeList} */
+//			var arr = document.getElementsByTagName("textarea");
+//			/** @type {number} */
+//			var i = arr.length - 1;
+//			for (;i >= 0;i--) {
+//				handler(arr[i]);
+//				/** @type {Element} */
+//				var li = document.createElement("button");
+//				/** @type {string} */
+//				li.className = "execute";
+//				/** @type {string} */
+//				li.innerHTML = "Execute";
+//				arr[i].parentNode.insertBefore(li, arr[i].nextSibling);
+//				/** @type {Element} */
+//				var elem = document.createElement("button");
+//				/** @type {string} */
+//				elem.className = "raw";
+//				/** @type {string} */
+//				elem.innerHTML = "View Initial Document";
+//				arr[i].parentNode.insertBefore(elem, arr[i].nextSibling);
+//			}
+//			/** @type {NodeList} */
+//			var codeSegments = document.getElementsByClassName("execute");
+//			/** @type {number} */
+//			i = 0;
+//			for (;i < codeSegments.length;i++) {
+//				/**
+//				 * @return {undefined}
+//				 */
+//				codeSegments[i].onclick = function() {
+//					childs = this.parentNode.childNodes;
+//					/** @type {number} */
+//					var i = 0;
+//					for (;i < childs.length;i++) {
+//						if ("TEXTAREA" == childs[i].tagName) {
+//							eval(childs[i].value);
+//						}
+//					}
+//				};
+//			}
+//			/** @type {NodeList} */
+//			var resultItems = document.getElementsByClassName("raw");
+//			/** @type {number} */
+//			i = 0;
+//			for (;i < resultItems.length;i++) {
+//				/**
+//				 * @return {undefined}
+//				 */
+//				resultItems[i].onclick = function() {
+//					var nodes = this.parentNode.childNodes;
+//					/** @type {number} */
+//					var i = 0;
+//					for (;i < nodes.length;i++) {
+//						if ("TEXTAREA" == nodes[i].tagName) {
+//							var expectedOutputHref = nodes[i].getAttribute("raw");
+//							loadFile(expectedOutputHref, function(deepDataAndEvents, dataAndEvents) {
+//								output = (new DocxGen(dataAndEvents)).getZip().generate({
+//									type : "blob"
+//								});
+//								saveAs(output, "raw.docx");
+//							});
+//						}
+//					}
+//				};
+//			}
+//		};
 	}, {
 		"../js/docUtils.js" : 2,
 		"../js/docxgen.js" : 4
